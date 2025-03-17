@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Danh sách người dùng</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2 class = "header">Danh sách người dùng</h2>
+
+<div id="allUsers">
+  <h3>Tất cả người dùng</h3>
+  <table id="allUsersTable">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Tuổi</th>
+        <th>Mã định danh</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="usersOver20">
+  <h3>Người dùng trên 20 tuổi</h3>
+  <table id="usersOver20Table">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Tuổi</th>
+        <th>Mã định danh</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="usersWithIdentityCode">
+  <h3>Người dùng có mã định danh</h3>
+  <table id="usersWithIdentityCodeTable">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Tuổi</th>
+        <th>Mã định danh</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+  const users = [
+    { name: "Dang Dinh Hoa", age: 25, identityCode: "123456789", email: "a@example.com", phoneNumber: "0901234567" },
+    { name: "Le Viet Hung", age: 18, identityCode: null, email: "b@example.com", phoneNumber: "0987654321" },
+    { name: "Nguyen Gia Nam", age: 30, identityCode: "987654321", email: "c@example.com", phoneNumber: "0912345678" },
+    { name: "Chau Tuan Minh", age: 22, identityCode: null, email: "d@example.com", phoneNumber: "0978901234" },
+    { name: "Tran Ngoc Hung", age: 19, identityCode: "456789123", email: "e@example.com", phoneNumber: "0963214587" },
+    { name: "Ngo Vu Kim Anh", age: 21, identityCode: "194912441", email: "f@example.com", phoneNumber: "0972387786"},
+    { name: "Nguyen Thi Nam", age: 50, identityCode: "939193931", email: "g@example.com", phoneNumber: "0867785620"}
+  ];
+
+  function displayUsers(users, tableId) {
+    const tableBody = document.querySelector(`#${tableId} tbody`);
+    tableBody.innerHTML = ""; 
+    users.forEach(user => {
+      const row = tableBody.insertRow();
+      const nameCell = row.insertCell();
+      const ageCell = row.insertCell();
+      const identityCodeCell = row.insertCell();
+      const emailCell = row.insertCell();
+      const phoneNumberCell = row.insertCell();
+
+      nameCell.textContent = user.name;
+      ageCell.textContent = user.age;
+      identityCodeCell.textContent = user.identityCode || "Không có"; 
+      emailCell.textContent = user.email;
+      phoneNumberCell.textContent = user.phoneNumber;
+    });
+  }
+
+  displayUsers(users, "allUsersTable");
+
+  const usersOver20 = users.filter(user => user.age > 20);
+  displayUsers(usersOver20, "usersOver20Table");
+
+  const usersWithIdentityCode = users.filter(user => user.identityCode !== null);
+  displayUsers(usersWithIdentityCode, "usersWithIdentityCodeTable");
+</script>
+
+</body>
+</html>
